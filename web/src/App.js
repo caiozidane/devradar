@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './global.css';
 import './App.css';
-import './Sidebar.css'
-import './Main.css'
+import './Sidebar.css';
+import './Main.css';
 
 function App() {
- 
 
   return (
    <div id="app">
@@ -86,10 +85,6 @@ function App() {
           <p>Nice Guy</p>
           <a href="https://github.com/MaqBr">Acessar Perfil</a>
         </li>
-
-
-
-
 
       </ul>
      </main>

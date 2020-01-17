@@ -13,12 +13,10 @@ main ul{
     main ul{
         grid-template-columns: 1fr;
     }
-    
 
 }
 
 li.dev-item{
-    background: #fff;
     background: #FFF;
     box-shadow: 0 0 14px 0 rgba(0,0,0,0.02);
     border-radius: 2px;
