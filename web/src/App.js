@@ -40,13 +40,15 @@ function App() {
       latitude,
       longitude,            
     })
+
+    console.log(response.data);
   }
 
   return (
    <div id="app">
      <aside>
        <strong>Cadastrar</strong>
-       <form>
+       <form onSubmit={handleAddDev}>
         <div className="input-block">
          <label htmlFor="github_username">Usuário do Github</label>
          <input 
