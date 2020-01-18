@@ -8,6 +8,8 @@ import './Main.css';
 
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [ github_username, setGithubUsername ] = useState('');
   const [ techs, setTechs ] = useState('');
 
@@ -31,6 +33,16 @@ function App() {
     )
   }, []);
 
+  useEffect(() => {
+    async function loadDevs(){
+      const response = await api.get('./devs');
+
+      setDevs(response.data);
+
+    }
+    loadDevs();    
+  }, []);
+
   async function handleAddDev(e){
     e.preventDefult();
 
@@ -41,7 +53,9 @@ function App() {
       longitude,            
     })
 
-    console.log(response.data);
+    setGithubUsername('');
+    setTechs('');
+    setDevs([...devs, response.data]);
   }
 
   return (
@@ -102,52 +116,19 @@ function App() {
 
      <main>
       <ul>
-        <li className="dev-item">
+        {devs.map(dev => (
+          <li key={dev._id} className="dev-item">
           <header>
-            <img src="https://avatars3.githubusercontent.com/u/39561223?s=460&v=4" alt="Caio Zidane" />
+            <img src={dev.avatar_url}  alt={dev.name} />
             <div className="user-info">
-              <strong>Caio Zidane</strong>
-              <span> React, ReactNative</span>
+              <strong>{dev.name}</strong>
+              <span> {dev.techs.join(', ')}}</span>
             </div>
           </header>
-          <p>Nice Guy</p>
-          <a href="https://github.com/caiozidane">Acessar Perfil</a>
+          <p>{dev.bio}}</p>
+          <a href={`https://github.com/${dev.github_username}`}>Acessar Perfil no Github</a>
         </li>
-
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars3.githubusercontent.com/u/4248081?s=460&v=4" alt="Caio Zidane" />
-            <div className="user-info">
-              <strong>Filipe Deschamps</strong>
-              <span> JavaScritp, React, ReactNative</span>
-            </div>
-          </header>
-          <p>Nice Guy</p>
-          <a href="https://github.com/filipedeschamps" target="_black">Acessar Perfil</a>
-        </li>
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars2.githubusercontent.com/u/2254731?s=64&v=4" alt="Caio Zidane" />
-            <div className="user-info">
-              <strong>Diego</strong>
-              <span> React, ReactNative, NodeJs</span>
-            </div>
-          </header>
-          <p>Nice Guy</p>
-          <a href="https://github.com/diego3g">Acessar Perfil</a>
-        </li>
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars0.githubusercontent.com/u/19453244?s=64&v=4" alt="Caio Zidane" />
-            <div className="user-info">
-              <strong>MaqBr</strong>
-              <span> C#, C++, .Net, ASP.NET</span>
-            </div>
-          </header>
-          <p>Nice Guy</p>
-          <a href="https://github.com/MaqBr">Acessar Perfil</a>
-        </li>
-
+        ))}
       </ul>
      </main>
    </div>
