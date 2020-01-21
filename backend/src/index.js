@@ -1,26 +1,25 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const MongoClient = require('mongoose');
 const cors = require('cors');
+const http = require('http');
+
 const routes = require('./routes');
+const { setupWebsocket } = require('./websocket')
 
 const app = express();
+const server = http.Server(app);
 
-mongoose.connect('mongodb+srv://caio:czbn12@cluster0-zduev.mongodb.net/week10?retryWrites=true&w=majority',{
-    userNameUrlParser: true,
-    userUnifiedTopology: true,
-});
+MongoClient.set('useCreateIndex', true);
 
+setupWebsocket(server);
 
-app.use(cors());
+MongoClient.connect('mongodb+srv://<user>:<password>@cluster0-efoe3.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
+app.use(cors())
 app.use(express.json());
 app.use(routes);
 
-app.listen(3333);
-
-//metodos http: get, put, post, delete
-// query params: req.query(filtros, ordenação, paginação)
-//route params: request.params(idenfificar recurso na adição ou remção)
-//body: request.body (dados para criação ou alteração de registro)
-
-
-
+server.listen(3333);
