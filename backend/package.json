@@ -10,15 +10,11 @@
     "axios": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "mongoose": "^5.8.7",
     "serialize-javascript": "^2.1.2",
-    "socket.io": "^2.3.0"
-=======
-    "mongoose": "^5.8.9",
-    "serialize-javascript": "^2.1.2"
->>>>>>> d4ea5e4302ca8302e51e48cb3d3f8331376a24cd
+    "socket.io": "^2.3.0",
+    "mongoose": "^5.8.9"
   },
+  
   "devDependencies": {
     "nodemon": "^2.0.2"
   }
