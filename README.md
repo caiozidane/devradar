@@ -13,5 +13,4 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 <h2>💻 Projeto</h2>
 O DevRadar é um projeto que visa conectar desenvolvedores com clientes por meio da localidade, em um raio de 10km.
 
-<h2>🎓 Quem ministrou?</h2>
-A semana foi ministrada pelo Diego Fernandes.
+
